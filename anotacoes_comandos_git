@@ -1,0 +1,5 @@
+*mkdir -> cria pastas; 
+*echo nomeDoArquivo > nomeDoArquivo.extensao -> cria um arquivo; 
+*rm -rf -> exclui pastas e arquivos; 
+*ls -a -> mostra arquivos ocultos; 
+
