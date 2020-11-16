@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <title>Introdução JS</title>
-    <meta charset="UTF-8">  
-    <script type="text/javascript" src="js/main.js"></script> <!--Importando algoritmo JS-->
-</head>
-<body>
-    <h1>Minha página</h1>
-</body>
+    <meta charset="UTF-8" />
+    <!--Importando algoritmo JS-->
+    <script type="text/javascript" src="js/exemplosWeb.js"></script>
+  </head>
+  <body>
+    <!--onclik - atribui uma ação quando clicado sobre-->
+    <button type="button" onclick="clicou()">Clique aqui</button>
+    <!--Redireciona para outra página quando clicar...-->
+    <button type="button" onclick="redirecionar()">Clique para navegar</button>
+    <!--A frase "Passe o mouse aqui" mudará quando passar o mouse em cima-->
+    <p id="mousemove" onmouseover="passeOMouse()">Passe o mouse aqui</p>
+    <!--Implementando com função para a frase voltar ao seu estado normal -->
+    <p onmouseover="passeOMouse2(this)" onmouseout="voltar(this)">
+      <!--O this passa a própria função como parâmetro-->
+      Passe o mouse aqui
+    </p>
+    <!--Função onchange-->
+    <select onchange="funcaoChenge(this)">
+      <option value="1">Valor 1</option>
+      <option value="2">Valor 2</option>
+      <option value="3">Valor 3</option>
+    </select>
+  </body>
 </html>
