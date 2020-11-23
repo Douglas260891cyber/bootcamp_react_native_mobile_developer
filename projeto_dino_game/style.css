@@ -1,0 +1,7 @@
+.dino {
+    width: 60px;
+    height: 60px;
+    background: green;
+    position: absolute;/*Significa que o objeto terá uma posição fixa*/
+    bottom: 0;/*Fará o objeto ser fixado na parte inferior da tela*/
+}
