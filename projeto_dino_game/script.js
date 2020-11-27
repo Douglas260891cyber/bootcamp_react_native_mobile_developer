@@ -1,15 +1,20 @@
 //document.querySelector('.dino') -> pega o elemento 'dino' do html e joga para dentro
 //da const 'dino'
 const dino = document.querySelector('.dino');
+const background = document.querySelector('.background');
+let estaPulando = false;
 //O comando abaixo informa ao computador que uma tecla foi pressionada | document.addEventListener -> cria um evento
 //keyup -> executa a função quando o botão for solto | evento.keyCode === 32 -> se o código do botão for executado (32 = barra), então execute
 const lidandoComkeyup = evento => {
     if (evento.keyCode === 32) {
-        jump();
+        if (!estaPulando) { //Se ele não estiver pulando, irá pular, senão, não irá. Isto evita que ele pule novamente antes de chegar ao "solo". 
+            jump();
+        }
     }
 }
 //Programando o pulo do dinossauro
 function jump() {
+    estaPulando = true;
     let position = 0;
     let upInterval = setInterval(() => { //150 px
         if (position >= 150) {
@@ -18,6 +23,7 @@ function jump() {
             let downInterval = setInterval(() => {
                 if (position <= 0) {
                     clearInterval(downInterval);
+                    estaPulando = false;
                 } else {
                     position -= 20;
                     dino.style.bottom = position + 'px';
@@ -30,4 +36,29 @@ function jump() {
         }
     }, 20); //A cada 20 milisegundos, o dino irá subir 20 px.
 }
-document.addEventListener('keyup', lidandoComkeyup); 
+
+//CRIANDO CACTUS
+function creatCactus() {
+    const cactus = document.createElement('div') //Criando elementos HTML com JS. 
+    let cactusPosition = 1000;
+    let randomTime = Math.random() * 6000; //Gera números aleatórios que representará de quanto em quanto tempo(intervalo) que um cactus será criado.
+    
+    cactus.classList.add('cactus');
+    cactus.style.left = 1000 + 'px';
+    background.appendChild(cactus);
+    //Mover o cactus...
+    let leftInterval = setInterval(() => {
+        //Se o cactus saiu da tela...
+        if (cactusPosition < -60) {
+            clearInterval(leftInterval);
+            background.removeChild(cactus)
+        } else {
+            cactusPosition -= 10;
+            cactus.style.left = cactusPosition + 'px';
+        }
+    }, 20)
+    //SetTimeOut executa uma determinada função depois de um determinado tempo.
+    setTimeout(creatCactus, randomTime); //Criação do cactus pelo intervavo definido acima...
+}
+creatCactus(); //Chamar a função para criar o cactus no começo do jogo.
+document.addEventListener('keyup', lidandoComkeyup);
