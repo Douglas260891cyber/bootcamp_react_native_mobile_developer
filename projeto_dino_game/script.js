@@ -3,6 +3,7 @@
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
 let estaPulando = false;
+let position = 0; //Posição do pulo do dino.
 //O comando abaixo informa ao computador que uma tecla foi pressionada | document.addEventListener -> cria um evento
 //keyup -> executa a função quando o botão for solto | evento.keyCode === 32 -> se o código do botão for executado (32 = barra), então execute
 const lidandoComkeyup = evento => {
@@ -15,7 +16,6 @@ const lidandoComkeyup = evento => {
 //Programando o pulo do dinossauro
 function jump() {
     estaPulando = true;
-    let position = 0;
     let upInterval = setInterval(() => { //150 px
         if (position >= 150) {
             clearInterval(upInterval); //Limpa o intervalo
@@ -40,11 +40,11 @@ function jump() {
 //CRIANDO CACTUS
 function creatCactus() {
     const cactus = document.createElement('div') //Criando elementos HTML com JS. 
-    let cactusPosition = 1000;
+    let cactusPosition = 1300;
     let randomTime = Math.random() * 6000; //Gera números aleatórios que representará de quanto em quanto tempo(intervalo) que um cactus será criado.
-    
+
     cactus.classList.add('cactus');
-    cactus.style.left = 1000 + 'px';
+    cactus.style.left = 1300 + 'px';
     background.appendChild(cactus);
     //Mover o cactus...
     let leftInterval = setInterval(() => {
@@ -52,6 +52,11 @@ function creatCactus() {
         if (cactusPosition < -60) {
             clearInterval(leftInterval);
             background.removeChild(cactus)
+            //60 é o tamanho do dino. 0 é o limite da tela. Então se a posição do cactus for menor que 60 e 
+            //maior que 0, significa que o cactus bateu no dino.
+        } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
+            clearInterval(leftInterval); //Para o cactus.
+            document.body.innerHTML = '<h1 class="game-over">Fim de Jogo</h1>';
         } else {
             cactusPosition -= 10;
             cactus.style.left = cactusPosition + 'px';

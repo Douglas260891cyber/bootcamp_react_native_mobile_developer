@@ -1,14 +1,41 @@
+body {
+  background: #fafafa;
+}
 .dino {
-    width: 60px;
-    height: 60px;
-    background: green;
-    position: absolute;/*Significa que o objeto terá uma posição fixa*/
-    bottom: 0;/*Fará o objeto ser fixado na parte inferior da tela*/
+  width: 60px;
+  height: 60px;
+  background-image: url(./images/dino.png); /*Forma de importar uma imagem de HTML para CSS.*/
+  position: absolute; /*Significa que o objeto terá uma posição fixa*/
+  bottom: 0; /*Fará o objeto ser fixado na parte inferior da tela*/
 }
 .cactus {
-    width: 20px;
-    height: 50px;
-    background: violet;
-    position: absolute;
-    bottom: 0; 
+  width: 60px;
+  height: 50px;
+  background-image: url(./images/cactus.png);
+  position: absolute;
+  bottom: 0;
+}
+.game-over {
+  color: #706767;
+  margin-top: 5rem;
+  text-align: center;
+  font-family: arial;
+}
+/*Animação com CSS*/
+@keyframes deslizarParaDireita {
+  from {
+    background-position: 70000%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+.background {
+  position: absolute;
+  bottom: 0;
+  background-image: url(./images/background.png);
+  background-repeat: repeat-x; /*Repete de maneira infinita no eixo X*/
+  animation: deslizarParaDireita 600s infinite linear;
+  height: 200px;
+  width: 100%;
 }
