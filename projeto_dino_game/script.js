@@ -5,7 +5,7 @@ let position = 0; //Posição do pulo do dino.
 
 const lidandoComkeyup = evento => {
     if (evento.keyCode === 32) {
-        if (!estaPulando) {  
+        if (!estaPulando) {
             jump();
         }
     }
@@ -13,9 +13,9 @@ const lidandoComkeyup = evento => {
 //Programando o pulo do dinossauro
 function jump() {
     estaPulando = true;
-    let upInterval = setInterval(() => { 
+    let upInterval = setInterval(() => {
         if (position >= 150) {
-            clearInterval(upInterval); 
+            clearInterval(upInterval);
             //Descer.
             let downInterval = setInterval(() => {
                 if (position <= 0) {
@@ -31,14 +31,14 @@ function jump() {
             position += 20;
             dino.style.bottom = position + 'px';
         }
-    }, 20); 
+    }, 20);
 }
 
 //CRIANDO CACTUS
 function creatCactus() {
     const cactus = document.createElement('div')
     let cactusPosition = 1300;
-    let randomTime = Math.random() * 6000; 
+    let randomTime = Math.random() * 6000;
 
     cactus.classList.add('cactus');
     cactus.style.left = 1300 + 'px';
@@ -56,7 +56,7 @@ function creatCactus() {
             cactus.style.left = cactusPosition + 'px';
         }
     }, 20)
-    setTimeout(creatCactus, randomTime); 
+    setTimeout(creatCactus, randomTime);
 }
-creatCactus(); 
+creatCactus();
 document.addEventListener('keyup', lidandoComkeyup);
